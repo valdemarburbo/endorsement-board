@@ -64,5 +64,5 @@ function appendEndorsementToListEl(endorsement) {
         <h3>From ${endorsementFrom}</h3>
     `
 
-    endorsementListEl.append(newEl)
+    endorsementListEl.prepend(newEl)
 }
