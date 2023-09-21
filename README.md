@@ -1,0 +1,1 @@
+Link to deployed app: https://vals-endorsement-board.netlify.app/
