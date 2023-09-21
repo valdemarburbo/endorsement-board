@@ -63,8 +63,10 @@ function appendEndorsementToListEl(endorsement) {
     newEl.innerHTML = `
         <h3>To ${endorsementTo}</h3>
         <p>${endorsementValue}</p>
-        <h3>From ${endorsementFrom}</h3>
-        <p id="${endorsementID}">❤️ ${endorsementLikes}</p>
+        <div>
+            <h3>From ${endorsementFrom}</h3>
+            <p id="${endorsementID}">❤️ ${endorsementLikes}</p>
+        </div>
     `
 
     endorsementListEl.prepend(newEl)

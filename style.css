@@ -7,6 +7,16 @@ body {
     background-color: #1B1924;
 }
 
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 .main-el {
     display: flex;
     flex-direction: column;
@@ -55,12 +65,60 @@ button {
 }
 
 textarea,
-button {
+button,
+li,
+input {
     width: 100%;
     border-radius: 8px;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 li {
+    box-sizing: border-box;
     background-color: #FFFFFF;
     margin: 12px 0;
+    font-family: "Inter";
+    font-size: 14px;
+    padding: 14px;
+}
+
+h3 {
+    font-weight: bold;
+    margin: 0;
+}
+
+div > p {
+    margin: 0;
+    padding: 2px 4px;
+}
+
+div > p:hover {
+    background-color: #28abf16b;
+    border-radius: 15%;
+}
+
+div {
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    box-sizing: border-box;
+    background-color: #444059;
+    color: #8F8F8F;
+    margin-top: 12px;
+    border-style: none;
+    height: 40px;
+    font-family: "Inter";
+    font-size: 15px;
+    text-align: center;
+}
+
+main > div {
+    gap: 9px;
 }
