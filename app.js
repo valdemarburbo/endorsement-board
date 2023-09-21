@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"
-import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
+import { getDatabase, ref, push, onValue, update, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"
 
 const appSettings = {
     databaseURL: "https://playground-c8093-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -34,6 +34,7 @@ publishBtn.addEventListener("click", () => {
         text: endorsementTextEl.value,
         from: fromInputEl.value,
         to: toInputEl.value,
+        likes: 0,
     }
 
     push(endorsementsInDB, inputObject)
@@ -56,13 +57,45 @@ function appendEndorsementToListEl(endorsement) {
     let endorsementValue = endorsement[1].text
     let endorsementFrom = endorsement[1].from
     let endorsementTo = endorsement[1].to
+    let endorsementLikes = endorsement[1].likes
 
     let newEl = document.createElement("li")
     newEl.innerHTML = `
         <h3>To ${endorsementTo}</h3>
         <p>${endorsementValue}</p>
         <h3>From ${endorsementFrom}</h3>
+        <p id="${endorsementID}">❤️ ${endorsementLikes}</p>
     `
 
     endorsementListEl.prepend(newEl)
+
+    let likesEl = document.getElementById(endorsementID)
+
+    let likeCount = endorsementLikes
+
+    likesEl.addEventListener("click", () => {
+        let locationOfEndorsementInDB = ref(database, `endorsements/${endorsementID}`)
+
+        let hasLiked = localStorage.getItem(endorsementID)
+
+        console.log(hasLiked)
+
+        if (!hasLiked) {
+            likeCount++
+
+            update(locationOfEndorsementInDB, {
+                likes: likeCount,
+            })
+
+            localStorage.setItem(endorsementID, true)    
+        } else {
+            likeCount--
+
+            update(locationOfEndorsementInDB, {
+                likes: likeCount,
+            })
+
+            localStorage.removeItem(endorsementID)
+        }
+    })
 }
